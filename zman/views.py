@@ -15,7 +15,6 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import render_to_response
 from django.contrib.messages.api import get_messages
 from django.utils.translation import ugettext as _
-from django.forms.util import ValidationError
 
 
 class OweZmanView(FormView):
