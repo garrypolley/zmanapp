@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block body %}
+
+<h1>{% trans 'Your ZMan homepage' %}</h1>
+{% if zmans_owed %}
+  {% blocktrans with first_name=user.first_name username=user.username %}
+  <h2>{{first_name}}, you owe {{zmans_owed}} zmans</h2>
+  {% endblocktrans %}
+  <br />
+  <div class="span3 offset1">
+    <ul class="unstyled">
+      {% for zman_owed in owed_zmans %}
+        <li><a href="https://twitter.com/#!/{{ zman_owed.owed_username }}">@{{ zman_owed.owed_username }}</a> gets {{ zman_owed.count }} <a href="{% url pay_zman zman_owed.owed_username %}">{% trans 'pay' %}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+{% if zmans_gotten %}
+  {% blocktrans with first_name=user.first_name %}
+  <h2>{{ first_name }}, you are owed {{zmans_gotten}} zmans</h2>
+  {% endblocktrans %}
+  <br />
+  <ul class="unstyled">
+    {% for zman_gotten in gotten_zmans %}
+    <li><a href="https://twitter.com/#!/{{ zman_owed.ower_username }}">@{{ zman_owed.ower_username }}</a> owes you {{ zman_owed.count }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% if not zmans_gotten and not zmans_owed %}
+  <p>{% trans 'You do not have any debts, positive or negative' %}</p>
+{% endif %}
+{% endblock %}

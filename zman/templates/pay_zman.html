@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block body %}
+<section>
+  <div class="row">
+    <div class="span8 offset2">
+      <h1>{% trans 'Repay My Debt' %}</h1>
+      <form action="{% url pay_zman %}" class="form-horizontal well" method="post">
+         {% with submit_text='Repay Debt' reset_text='Reset' %}
+          {% include "form_snippet.html" %}
+         {% endwith %}
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

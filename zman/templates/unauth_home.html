@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block body %}
+<section>
+    <div class="page-header">
+        <h2>{% trans 'What are you doing here?' %}</h2>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <p>{% blocktrans %} Ever needed to settle a bet, or cut a deal?  This site is meant for you.  Starting out our currency will be zmans a great
+            sandwich provided by <a href="http://www.oklahomajoesbbq.com/restaurant/">Oklahoma Joe's</a>; a great place to eat BBQ in Kansas City Missouri.  As time goes on, and this site grows, we will
+            offer the ability to add anytime of bargaining debt.  Get ready to resolve all those personal and office issues with the amazing flavor
+            of pulled pork and BBQ.{% endblocktrans %}
+        </p>
+      </div>
+      <div class="span4">
+        <div class="well">
+          <h3>{% trans 'Current login methods:' %}</h3>
+          <h4><a href="{% url socialauth_begin "twitter" %}">Twitter</a></h4>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}

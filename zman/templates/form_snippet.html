@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<fieldset>
+{{ form.non_field_errors }}
+{% for field in form %}
+    <div class="field-wrapper wraps-{{ field.name }}">
+      <div class="control-group">
+        {% if not field.is_hidden %}<label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>{% endif %}
+        <div class="controls">
+          {{ field }}
+          <p class='help-block'>{{ field.help_text }}</p>
+        </div>
+        
+        {{ field.errors }}
+      </div>
+    </div>
+{% endfor %}
+{% csrf_token %}
+<div class="form-actions">
+  {% blocktrans with submit_text as s_t and reset_text as res %}
+    <button class="btn btn-primary" type="submit">{{ s_t }} </button>
+    <button class="btn" type="reset">{{ res }}</button>
+  {% endblocktrans %}
+</div>
+</fieldset>

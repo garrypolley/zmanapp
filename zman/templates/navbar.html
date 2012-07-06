@@ -1,0 +1,52 @@
+{% load i18n %}
+
+<div class="navbar navbar-fixed-top">
+   <div class="navbar-inner">
+     <div class="container">
+       <a class="brand" href="{% url home %}">{% trans 'Zman' %}</a>         
+       <ul class="nav">
+        {% if user.is_authenticated %}
+          <li><a href="{% url owe_zman %}">{% trans 'Give' %}</a></li>
+          <li><a href="{% url pay_zman %}">{% trans 'Pay' %}</a></li>
+        {% else %}
+        {% endif %}
+        <!---
+        <li><a id="swatch-link" href="/#gallery">Gallery</a></li> 
+        <li class="dropdown">  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Preview <b class="caret"></b></a> 
+          <ul class="dropdown-menu">
+            <li><a href="/default">Default</a></li> 
+            <li class="divider"></li>
+            <li><a href="/amelia">Amelia</a></li> 
+            <li><a href="/cerulean">Cerulean</a></li> 
+            <li><a href="/cyborg">Cyborg</a></li> 
+            <li><a href="/journal">Journal</a></li>
+            <li><a href="/readable">Readable</a></li>
+            <li><a href="/simplex">Simplex</a></li> 
+            <li><a href="/slate">Slate</a></li> 
+            <li><a href="/spacelab">Spacelab</a></li> 
+            <li><a href="/spruce">Spruce</a></li>
+            <li><a href="/superhero">Superhero</a></li> 
+            <li><a href="/united">United</a></li> 
+          </ul> 
+        </li><li class="divider-vertical"></li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Download <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="bootstrap.min.css">bootstrap.min.css</a></li>
+            <li><a target="_blank" href="bootstrap.css">bootstrap.css</a></li>
+            <li class="divider"></li>
+            <li><a target="_blank" href="variables.less">variables.less</a></li>
+            <li><a target="_blank" href="bootswatch.less">bootswatch.less</a></li>
+          </ul>
+        </li>
+      -->
+      </ul>
+      <ul class="nav pull-right">
+        {% if user.is_authenticated %}
+          <li><a href="{% url logout %}">{% trans 'Logout' %}</a></li>
+        {% else %}
+          <li><a href="{% url socialauth_begin "twitter" %}">{% trans 'Login' %}</a></li>
+        {% endif %}
+      </ul>
+     </div>
+   </div>
+ </div>
