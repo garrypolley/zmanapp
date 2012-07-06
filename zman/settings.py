@@ -1,6 +1,6 @@
 # Django settings for zman project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 import os
@@ -196,3 +196,8 @@ LOGGING = {
         },
     }
 }
+
+use_local = False
+
+if use_local:
+    from local_settings import *
