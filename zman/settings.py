@@ -197,7 +197,7 @@ LOGGING = {
     }
 }
 
-use_local = False
+use_local = True
 
 if use_local:
     from local_settings import *

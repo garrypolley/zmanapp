@@ -28,9 +28,9 @@ class OwedItem(models.Model):
             item.count = item.count + count
         except OwedItem.DoesNotExist:
             item = cls()
-            item.item_type = item_type
-            item.owed_username = owed_username
-            item.ower_username = ower_username
+            item.item_type = item_type.lower()
+            item.owed_username = owed_username.lower()
+            item.ower_username = ower_username.lower()
             item.count = count
         item.save()
         return item
