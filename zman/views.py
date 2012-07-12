@@ -26,6 +26,12 @@ class OweZmanView(FormView):
     def dispatch(self, request, *args, **kwargs):
         return FormView.dispatch(self, request, *args, **kwargs)
 
+    def get_initial(self):
+        """Sets amount equal to 1 for form default"""
+        initial_args = self.initial.copy()
+        initial_args['amount'] = 1
+        return initial_args
+
     def form_valid(self, form):
         # Currently defaults to a zman
         OwedItem.ensure_owed_item(form.cleaned_data['owed_username'],
@@ -48,6 +54,7 @@ class PayZmanView(FormView):
         initial_args = self.initial.copy()
         if 'username' in self.kwargs:
             initial_args['owed_username'] = self.kwargs.get('username')
+        initial_args['amount'] = 1
         return initial_args
 
     def form_valid(self, form):
