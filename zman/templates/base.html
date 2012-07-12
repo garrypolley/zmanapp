@@ -4,7 +4,21 @@
   <head>
     <meta charset="utf-8" />
     <title>Z-Man{% block title %}{% endblock %}</title>
+    <!--
     <link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css" type="text/css" media="screen, projection" />
+  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
      <!--[if lt IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   </head>
 
@@ -12,8 +26,6 @@
 	  {% block nav %}
 	    {% include 'navbar.html' %}
 	  {% endblock nav %}
-    <br/>
-    <br/>
     <div class="container">
 	  {% block body %}
 	  {% endblock body %}

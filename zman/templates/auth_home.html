@@ -2,7 +2,6 @@
 {% load i18n %}
 {% block body %}
 
-<h1>{% trans 'Your ZMan homepage' %}</h1>
 {% if zmans_owed %}
   {% blocktrans with first_name=user.first_name username=user.username %}
   <h2>{{first_name}}, you owe {{zmans_owed}} zmans</h2>
