@@ -128,8 +128,8 @@ INSTALLED_APPS = (
 )
 
 # Settings for twitter
-TWITTER_CONSUMER_KEY = '5dyyIwMxrbystUfxLRLQ'
-TWITTER_CONSUMER_SECRET = 'SG7BGrMtDpqZ4N04F4kxbPQcmrqHMBxAltzJvpaK0'
+TWITTER_CONSUMER_KEY = 'SOME_KEY'
+TWITTER_CONSUMER_SECRET = 'SOME_SECRET'
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
