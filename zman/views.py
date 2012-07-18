@@ -65,7 +65,7 @@ class PayZmanView(FormView):
         if debt_paid:
             return super(PayZmanView, self).form_valid(form)
 
-        form._errors['owed_username'] = form.error_class([_("You do not owe {0} any zmans.").format(form.cleaned_data.get('owed_username', ''))])
+        form._errors['owed_username'] = form.error_class([_("You do not owe @{0} any zmans.").format(form.cleaned_data.get('owed_username', ''))])
         if 'owed_username' in form.cleaned_data:
             del form.cleaned_data['owed_username']
         return self.form_invalid(form)

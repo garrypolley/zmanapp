@@ -23,13 +23,13 @@ class OwedItem(models.Model):
         This is a private class method, do not use me.
         """
         try:
-            item = cls.objects.get(owed_username=username_1,
-                                   ower_username=username_2,
+            item = cls.objects.get(owed_username=username_1.lower(),
+                                   ower_username=username_2.lower(),
                                    item_type=item_type)
         except OwedItem.DoesNotExist:
             try:
-                item = cls.objects.get(owed_username=username_2,
-                                       ower_username=username_1,
+                item = cls.objects.get(owed_username=username_2.lower(),
+                                       ower_username=username_1.lower(),
                                        item_type=item_type)
             except OwedItem.DoesNotExist:
                 raise OwedItem.DoesNotExist
@@ -40,17 +40,13 @@ class OwedItem(models.Model):
                          ower_username, item_type, count=1):
         """Will ensure that an item being owed will be created."""
         try:
-            item = cls._get_owed_item(owed_username, ower_username)
-            if item.owed_username == owed_username:
+            item = cls._get_owed_item(owed_username, ower_username, item_type)
+
+            if item.ower_username.lower() == ower_username.lower():
                 item.count = item.count + count
             else:
-                item_count = item.count - count
-                if item_count < 0:
-                    item.count = abs(item_count)
-                    item.owed_username = ower_username
-                    item.ower_username = owed_username
-                else:
-                    item.count = item_count
+                item.count = item.count - count
+
         except OwedItem.DoesNotExist:
             item = cls()
             item.item_type = item_type.lower()
@@ -58,7 +54,7 @@ class OwedItem(models.Model):
             item.ower_username = ower_username.lower()
             item.count = count
 
-        if item.count == 0:
+        if item.count <= 0:
             item.delete()
         else:
             item.save()
@@ -70,7 +66,7 @@ class OwedItem(models.Model):
         """Retruns true if the item actually paid a debt, False
         if no debt needed to be paid."""
         try:
-            item = cls._get_owed_item(owed_username, ower_username)
+            item = cls._get_owed_item(owed_username, ower_username, item_type)
             if item.owed_username == owed_username:
                 item.count = item.count - count
             else:
